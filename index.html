@@ -1090,6 +1090,39 @@
 </head>
 <body>
 
+<!-- ============================================================ -->
+<!-- PASSWORD GATE (basic client-side)                            -->
+<!-- ============================================================ -->
+<div id="wn-gate" style="position:fixed;inset:0;z-index:99999;background:#0a0a0a;color:#fff;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;-webkit-font-smoothing:antialiased;">
+  <div style="width:100%;max-width:360px;padding:36px 32px;text-align:center;">
+    <div style="width:52px;height:52px;border-radius:13px;background:#FFE817;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:24px;color:#000;margin:0 auto 20px;">W</div>
+    <h1 style="font-size:19px;font-weight:600;margin:0 0 6px;letter-spacing:-.01em;">Whatnot AI Copilot</h1>
+    <p style="font-size:13.5px;color:rgba(255,255,255,.55);line-height:1.55;margin:0 0 22px;">Password-protected. Enter the password to view this document.</p>
+    <form id="wn-gform" style="display:flex;gap:8px;">
+      <input id="wn-pw" type="password" placeholder="Password" autocomplete="current-password" autofocus style="flex:1;background:#161616;border:1px solid #2a2a2a;border-radius:10px;padding:12px 14px;font-size:14px;color:#fff;outline:none;">
+      <button type="submit" style="background:#FFE817;color:#000;border:none;border-radius:10px;padding:0 18px;font-size:14px;font-weight:600;cursor:pointer;">Unlock</button>
+    </form>
+    <div id="wn-err" style="color:#ff6b6b;font-size:12.5px;margin-top:12px;min-height:16px;opacity:0;transition:.15s;">Incorrect password — try again.</div>
+    <div style="margin-top:24px;font-size:11px;color:rgba(255,255,255,.3);">Vision &amp; design specification</div>
+  </div>
+</div>
+<script>
+(function(){
+  var HASH="3ea125d0bff386e6754b3782b300016fc79a9cf8f8669c0a5c3db64467ddb681";
+  var gate=document.getElementById("wn-gate");
+  document.documentElement.style.overflow="hidden";
+  function unlock(){gate.remove();document.documentElement.style.overflow="";}
+  async function sha(s){var b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0")}).join("");}
+  if(sessionStorage.getItem("wn_ok")==="1"){unlock();}
+  document.getElementById("wn-gform").addEventListener("submit",async function(e){
+    e.preventDefault();
+    var v=document.getElementById("wn-pw").value;
+    if(await sha(v)===HASH){sessionStorage.setItem("wn_ok","1");unlock();}
+    else{document.getElementById("wn-err").style.opacity="1";document.getElementById("wn-pw").value="";}
+  });
+})();
+</script>
+
 <div class="layout">
 
 <aside class="sidenav">
