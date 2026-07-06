@@ -173,6 +173,29 @@
     line-height: 1.6;
   }
 
+  /* Part dividers — big breaks between the major acts of the doc */
+  .part-divider {
+    margin: 104px 0 8px;
+    padding-top: 40px;
+    border-top: 3px solid #000;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .part-divider:first-of-type { margin-top: 72px; }
+  .part-tag {
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--whatnot-yellow); background: #000;
+    padding: 4px 10px; border-radius: 5px;
+    align-self: center;
+  }
+  .part-title { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; }
+  .part-sub { font-size: 14px; color: var(--text-secondary); flex: 1; min-width: 220px; }
+  /* The section right after a part divider shouldn't double-up the top border */
+  .part-divider + section > .section-header { border-top: none; padding-top: 8px; }
+
   /* Priority badges */
   .pri {
     display: inline-flex; align-items: center;
@@ -1235,6 +1258,15 @@
   </div>
 </section>
 
+<!-- ============================================================ -->
+<!-- PART DIVIDER — STRATEGY                                       -->
+<!-- ============================================================ -->
+<div class="part-divider">
+  <span class="part-tag">Part 1</span>
+  <span class="part-title">Strategy</span>
+  <span class="part-sub">Where the market is, what we believe, and what's broken today.</span>
+</div>
+
 <!-- 01 COMPETITIVE LANDSCAPE -->
 <section id="competitive">
   <div class="section-header">
@@ -1611,6 +1643,15 @@
     </div>
   </div>
 </section>
+
+<!-- ============================================================ -->
+<!-- PART DIVIDER — THE DESIGN                                     -->
+<!-- ============================================================ -->
+<div class="part-divider">
+  <span class="part-tag">Part 2</span>
+  <span class="part-title">The design</span>
+  <span class="part-sub">Every surface — from entry point to answer card to threads and proactive nudges.</span>
+</div>
 
 <!-- ============================================================ -->
 <!-- 04 ENTRY POINTS                                               -->
@@ -3476,6 +3517,15 @@
 </section>
 
 <!-- ============================================================ -->
+<!-- PART DIVIDER — THE PLAN                                       -->
+<!-- ============================================================ -->
+<div class="part-divider">
+  <span class="part-tag">Part 3</span>
+  <span class="part-title">The plan</span>
+  <span class="part-sub">What ships when, the agentic future, and the risks we're watching.</span>
+</div>
+
+<!-- ============================================================ -->
 <!-- 14 ROADMAP                                                    -->
 <!-- ============================================================ -->
 <section id="roadmap">
@@ -4409,11 +4459,10 @@
 <!-- ============================================================ -->
 <!-- APPENDIX DIVIDER                                              -->
 <!-- ============================================================ -->
-<div style="margin:96px 0 0;padding:40px 0 0;border-top:3px solid #000;">
-  <div style="display:flex;align-items:baseline;gap:14px;">
-    <span style="font-size:28px;font-weight:700;letter-spacing:-0.02em;">Appendix</span>
-    <span style="font-size:14px;color:var(--text-secondary);">Supporting research, full loop inventory, and competitor detail</span>
-  </div>
+<div class="part-divider">
+  <span class="part-tag">Part 4</span>
+  <span class="part-title">Appendix</span>
+  <span class="part-sub">Supporting research, the full loop inventory, competitor detail, and deferred entry points.</span>
 </div>
 
 <!-- APPENDIX A -->
